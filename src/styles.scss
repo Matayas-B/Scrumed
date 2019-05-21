@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.general-title {
+  height: 10em;
+  position: relative
+}
+
+  .general-title p {
+  margin: 0;
+  position: absolute;
+  font-size: 70px;
+  color: crimson;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
