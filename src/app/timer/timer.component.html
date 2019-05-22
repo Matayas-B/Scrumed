@@ -1,5 +1,5 @@
 <div class="countdown">
-  <h1>
+  <h1 [@changeTitleSize]="{value: currentState}" (mouseover)="changeTitleSize()" (mouseleave)="changeTitleSize()">
     {{activeUser.name}}
   </h1>
   <div class="bloc-time hours" data-init-value="24">

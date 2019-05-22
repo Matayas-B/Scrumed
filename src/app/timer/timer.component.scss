@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  margin: 13% 0% 0% 19% !important;
+  margin: 11% 0% 0% 23% !important;
   height: 310px;
   z-index: 500;
 
@@ -16,7 +16,8 @@
     margin-bottom: 10%;
     font-size: 50px;
     color: #f07c22;
-    font-family: 'Aclonica', cursive;
+    padding-right: 85px;
+    font-family: 'Aclonica';
   }
 }
 
@@ -67,13 +68,14 @@ h2 {
     font: normal 0.94em $lato;
     color: #1a1a1a;
     text-transform: uppercase;
+    font-family: 'Aclonica';
   }
 
   .figure {
     position: relative;
     float: left;
     height: 110px;
-    width: 100px;
+    width: 85px;
     margin-right: 10px;
     background-color: #fff;
     border-radius: 8px;

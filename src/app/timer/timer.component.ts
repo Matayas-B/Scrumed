@@ -2,20 +2,34 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { interval } from 'rxjs';
 import { Guest } from 'src/api/models/guest';
 import { EventEmitter } from '@angular/core';
+import { trigger, state, style, transition, animate, useAnimation } from '@angular/animations';
 
 const secondsCounter = interval(1000);
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss']
+  styleUrls: ['./timer.component.scss'],
+  animations: [
+    trigger('changeTitleSize', [
+      state('initial', style({
+        fontSize: '{{initialpixels}}px'
+      }), { params: { initialpixels: 50 } }),
+      state('final', style({
+        fontSize: '{{finalpixels}}px'
+      }), { params: { finalpixels: 75 } }),
+      transition('initial => final', animate('100ms')),
+      transition('final => initial', animate('400ms'))
+    ])
+  ]
 })
-
 export class TimerComponent implements OnInit {
 
   hours: string;
   minutes: string;
   seconds: string;
+
+  currentState = 'initial';
 
   @Input() activeUser: Guest;
   activeUserRemainingSeconds: number = 500;
@@ -31,8 +45,12 @@ export class TimerComponent implements OnInit {
 
   constructor() { }
 
+  changeTitleSize() {
+    this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
+  }
+
   nextTurn() {
-    this.activeUserRemainingSeconds = 5;
+    this.activeUserRemainingSeconds = 500;
     this.nextUser.emit(null);
   }
 
