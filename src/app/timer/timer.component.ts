@@ -18,7 +18,7 @@ export class TimerComponent implements OnInit {
   seconds: string;
 
   @Input() activeUser: Guest;
-  activeUserRemainingSeconds: number = 5;
+  activeUserRemainingSeconds: number = 500;
 
   @Input()
   set activeTime(value: Date) {
@@ -38,7 +38,7 @@ export class TimerComponent implements OnInit {
 
   countdown() {
     --this.activeUserRemainingSeconds;
-    if(this.activeUserRemainingSeconds === 0)
+    if (this.activeUserRemainingSeconds === 0)
       this.nextTurn();
 
     var newSeconds = +this.seconds - 1;
