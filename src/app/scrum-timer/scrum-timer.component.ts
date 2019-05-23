@@ -4,6 +4,7 @@ import { Guest } from 'src/api/models/guest';
 import { TimerService } from 'src/api/services/timer.service';
 import { Router } from '@angular/router';
 import { Scrum } from 'src/api/models/scrum';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-scrum-timer',
@@ -31,11 +32,14 @@ export class ScrumTimerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timerService.getScrum().subscribe(scrum => this.currentScrum = scrum);
-    this.minutesPerGuest = this.currentScrum.minutesPerGuest;
-    this.guestService.getGuests().subscribe(guests => {
-      this.guestList = guests;
-      this.activeGuest = this.guestList.find(g => g.isActive);
-    });
+    forkJoin(
+      this.timerService.getScrum(),
+      this.guestService.getGuests())
+      .subscribe(([scrum, guests]) => {
+        this.currentScrum = scrum;
+        this.guestList = guests;
+        this.minutesPerGuest = this.currentScrum.minutesPerGuest;
+        this.activeGuest = this.guestList.find(g => g.isActive);
+      });
   }
 }

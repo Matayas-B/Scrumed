@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Guest } from '../models/guest';
-import { of, Observable } from 'rxjs';
-
-export const GUESTS: Guest[] = [
-  { name: "Matayas", turn: 1, isActive: true },
-  { name: "Fede", turn: 2, isActive: false },
-  { name: "Lucas", turn: 3, isActive: false },
-  { name: "Lucho", turn: 4, isActive: false }
-];
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GuestService {
-  constructor() { }
+
+  baseUrl = environment.serviceBaseUrl;
+
+  constructor(private httpClient: HttpClient) { }
 
   getGuests(): Observable<Guest[]> {
-    return of(GUESTS);
+    const url = `${this.baseUrl}guests`;
+    const headers = new HttpHeaders()
+      .set('Accept', 'application/json');
+    return this.httpClient.get<Guest[]>(url, { headers });
   }
 }

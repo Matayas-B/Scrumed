@@ -10,6 +10,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ScrumTimerComponent } from './scrum-timer/scrum-timer.component';
 import { ScrumFinishedComponent } from './scrum-finished/scrum-finished.component';
 import { TimerComponent } from './timer/timer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,15 @@ import { TimerComponent } from './timer/timer.component';
     PageNotFoundComponent,
     ScrumTimerComponent,
     ScrumFinishedComponent,
-    TimerComponent
+    TimerComponent,
+    InitializeScrumComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

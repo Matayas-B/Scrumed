@@ -1,6 +1,6 @@
 <div class="countdown">
-  <h1 [@changeTitleSize]="{value: currentState}" (mouseover)="changeTitleSize()" (mouseleave)="changeTitleSize()">
+  <h1 *ngIf="activeUser" [@changeTitleSize]="{value: currentState}" (mouseover)="changeTitleSize()" (mouseleave)="changeTitleSize()">
     {{activeUser.name}}
   </h1>
-  <app-timer [isCountdown]="true" [timeBurst]="minutesPerTurn"></app-timer>
+  <app-timer *ngIf="minutesPerTurn" [isCountdown]="true" [timeBurst]="minutesPerTurn"></app-timer>
 </div>
