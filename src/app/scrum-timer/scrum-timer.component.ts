@@ -15,7 +15,7 @@ export class ScrumTimerComponent implements OnInit {
   guestList: Guest[] = [];
   activeGuest: Guest;
   currentScrum: Scrum;
-  remainingSeconds: string;
+  minutesPerGuest: number;
 
   constructor(
     private guestService: GuestService,
@@ -31,8 +31,8 @@ export class ScrumTimerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timerService.getCurrentTime().subscribe(scrum => this.currentScrum = scrum);
-    this.remainingSeconds = this.currentScrum.minutesPerGuest + 's';
+    this.timerService.getScrum().subscribe(scrum => this.currentScrum = scrum);
+    this.minutesPerGuest = this.currentScrum.minutesPerGuest;
     this.guestService.getGuests().subscribe(guests => {
       this.guestList = guests;
       this.activeGuest = this.guestList.find(g => g.isActive);

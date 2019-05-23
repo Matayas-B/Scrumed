@@ -1,4 +1,4 @@
 export class Scrum {
-  remainingTime: Date;
+  totalTime: Date;
   minutesPerGuest: number;
 }

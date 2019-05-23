@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row">
-    <!-- <div class="col-lg-3 col-md-3 col-sm-3" style="margin: auto;">
-      <app-guest [activeUser]="activeGuest"></app-guest>
-    </div> -->
     <div class="col-lg-12 col-md-12 col-sm-12">
-      <app-timer [activeUser]="activeGuest" [activeTime]="currentScrum.remainingTime" (nextUser)="enableNextUser()"></app-timer>
+      <app-guest-timer [activeUser]="activeGuest" [minutesPerTurn]="minutesPerGuest" (nextUser)="enableNextUser()">
+      </app-guest-timer>
     </div>
     <div class="wrapper">
-      <div class="spinner pie" [ngStyle]="{'animation-duration': remainingSeconds}"></div>
-      <div class="filler pie" [ngStyle]="{'animation-duration': remainingSeconds}"></div>
-      <div class="mask" [ngStyle]="{'animation-duration': remainingSeconds}"></div>
+      <div class="spinner pie" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
+      <div class="filler pie" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
+      <div class="mask" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <h1 class="total-title">Total Scrum Meeting Time</h1>
+    <div style="margin-left: 20%;">
+      <app-timer style="margin-left: 20%;" [isCountdown]="false" [totalTime]="currentScrum.totalTime"></app-timer>
     </div>
   </div>
 </div>

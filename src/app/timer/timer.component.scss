@@ -1,57 +1,9 @@
 @import '~compass-mixins/lib/compass/css3';
 @import url(https://fonts.googleapis.com/css?family=Aclonica);
 
-.countdown {
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 11% 0% 0% 23% !important;
-  height: 310px;
-  z-index: 500;
-
-  h1 {
-    margin-top: 10%;
-    margin-bottom: 10%;
-    font-size: 50px;
-    color: #f07c22;
-    padding-right: 85px;
-    font-family: 'Aclonica';
-  }
-}
-
 $lato: 'Lato';
 
-// Title
-h1 {
-  margin-bottom: 60px;
-  text-align: center;
-  font: 300 2.25em $lato;
-  text-transform: capitalize;
-
-  strong {
-    font-weight: 400;
-    color: #ea4c4c;
-  }
-}
-
-h2 {
-  margin-bottom: 80px;
-  text-align: center;
-  font: 300 0.7em $lato;
-  text-transform: uppercase;
-
-  strong {
-    font-weight: 400;
-  }
-}
-
 // Countdown
-.countdown {
-  width: 720px;
-  margin: 0 auto;
-
   .bloc-time {
     float: left;
     margin-right: 45px;
@@ -181,5 +133,3 @@ h2 {
       }
     }
   }
-}
-
