@@ -19,4 +19,11 @@ export class GuestService {
       .set('Accept', 'application/json');
     return this.httpClient.get<Guest[]>(url, { headers });
   }
+
+  addGuest(guest: Guest) {
+    const url = `${this.baseUrl}guests/add-guest`;
+    const headers = new HttpHeaders()
+      .set('Accept', 'application/json');
+    return this.httpClient.post<Guest>(url, guest, { headers });
+  }
 }
