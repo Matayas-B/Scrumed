@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h1 class="welcome-title">
+        ¡ Welcome to Scrummed !
+      </h1>
+      <h2 class="initial-title">
+        Please, include as many participants as you want to our <span>Scrum-Meeting</span>
+      </h2>
+    </div>
+    <form class="col-lg-12 col-md-12 col-sm-12" [formGroup]="nextParticipantForm" (ngSubmit)="addParticipant()">
+      <div class="form-group">
+        <label for="participantName" class="cool-input">
+          <input type="text" id="participantName" placeholder="&nbsp;" formControlName="participantName"
+          [ngClass]="{ 'is-invalid': submitted && nextParticipantForm.controls.participantName.errors }" />
+          <span class="label">Participant name</span>
+          <div *ngIf="submitted && nextParticipantForm.controls.participantName.errors" class="invalid-feedback">
+              <div *ngIf="nextParticipantForm.controls.participantName.errors.required">Participant Name is required.</div>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+          <button class="btn btn-primary">Add Participant</button>
+      </div>
+    </form>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h2 class="guest-list" *ngFor="let guest of participants; index as turn;">
+        {{guest.name}}<span style="color: black;">, Turn:</span> {{turn}}
+      </h2>
+    </div>
+  </div>
+</div>

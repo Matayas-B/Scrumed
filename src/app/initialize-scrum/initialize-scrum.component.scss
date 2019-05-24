@@ -1,0 +1,85 @@
+.welcome-title {
+    text-align: center;
+    font-family: 'Aclonica';
+    margin: 5%;
+    font-size: 60px;
+    color: #f07c22;
+  }
+  
+  .initial-title {
+    margin-top: 10%;
+  
+    span {
+      font-family: 'Aclonica';
+    }
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  .cool-input {
+    position: relative;
+    margin-top: 5%;
+    width: 100%;
+    max-width: 280px;
+  }
+  .cool-input .label {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-size: 16px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+  }
+  .cool-input .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+  }
+  .cool-input input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+  }
+  .cool-input input:not(:placeholder-shown) + span {
+    transform: translateY(-26px) scale(0.75);
+  }
+  .cool-input input:focus {
+    background: none;
+    outline: none;
+  }
+  .cool-input input:focus + span {
+    transform: translateY(-26px) scale(0.75);
+  }
+  .cool-input input:focus + span + .border {
+    transform: scaleX(1);
+  }
+  
+  .btn-primary {
+    margin-top: 10%;
+  }
+  
+  .guest-list {
+    margin-top: 2%;
+    font-family: 'Aclonica';
+    color: coral;
+    text-transform: capitalize;
+  }
