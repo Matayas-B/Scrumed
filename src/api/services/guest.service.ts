@@ -20,10 +20,10 @@ export class GuestService {
     return this.httpClient.get<Guest[]>(url, { headers });
   }
 
-  addGuest(guest: Guest) {
+  addGuest(guest: Guest): Observable<Guest[]> {
     const url = `${this.baseUrl}guests/add-guest`;
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
-    return this.httpClient.post<Guest>(url, guest, { headers });
+    return this.httpClient.post<Guest[]>(url, guest, { headers });
   }
 }
