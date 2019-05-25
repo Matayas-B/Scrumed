@@ -12,7 +12,7 @@ const routes: Routes = [
     data: {title: 'Initialize Scrum Meeting!'}
   },
   {
-    path: 'scrum-timer',
+    path: 'scrum-timer/:id',
     component: ScrumTimerComponent,
     data: { title: 'Scrum Timer!' }
   },

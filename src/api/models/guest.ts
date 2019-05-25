@@ -1,11 +1,11 @@
 export class Guest {
-  name: string;
-  turn: number;
-  isActive: boolean;
+  participantName: string;
+  participantTurn: number;
+  isActiveParticipant: boolean;
 
   constructor(name) {
-    this.name = name,
-    this.turn = 0,
-    this.isActive = true
+    this.participantName = name,
+    this.participantTurn = 0,
+    this.isActiveParticipant = true
   }
 }

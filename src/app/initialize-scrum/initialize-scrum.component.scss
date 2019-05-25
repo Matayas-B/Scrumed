@@ -72,14 +72,35 @@
   .cool-input input:focus + span + .border {
     transform: scaleX(1);
   }
-  
-  .btn-primary {
+
+  .btn {
     margin-top: 10%;
   }
-  
+  .btn-warning {
+    background-color: #f07c22 !important;
+    width: 30%;
+    font-size: 30px;
+    font-family: aclonica;
+  }
+
   .guest-list {
     margin-top: 2%;
     font-family: 'Aclonica';
     color: coral;
     text-transform: capitalize;
+  }
+
+  .participants-title {
+    h4 {
+      margin: 8% 0% 2% 0%;
+    }
+
+    span {
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    span[target=value] {
+      margin: 0% 5% 0% 0%;
+    }
   }

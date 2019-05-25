@@ -4,29 +4,73 @@
       <h1 class="welcome-title">
         ¡ Welcome to Scrummed !
       </h1>
-      <h2 class="initial-title">
-        Please, include as many participants as you want to our <span>Scrum-Meeting</span>
-      </h2>
     </div>
-    <form class="col-lg-12 col-md-12 col-sm-12" [formGroup]="nextParticipantForm" (ngSubmit)="addParticipant()">
-      <div class="form-group">
-        <label for="participantName" class="cool-input">
-          <input type="text" id="participantName" placeholder="&nbsp;" formControlName="participantName"
-          [ngClass]="{ 'is-invalid': submitted && nextParticipantForm.controls.participantName.errors }" />
-          <span class="label">Participant name</span>
-          <div *ngIf="submitted && nextParticipantForm.controls.participantName.errors" class="invalid-feedback">
-              <div *ngIf="nextParticipantForm.controls.participantName.errors.required">Participant Name is required.</div>
+
+    <form class="col-lg-12 col-md-12 col-sm-12" [formGroup]="scrumMeetingForm" (ngSubmit)="createScrumMeeting()">
+
+      <!-- Meeting Title -->
+      <div class="form-group text-center">
+        <label for="title" class="cool-input">
+          <input type="text" id="title" placeholder="&nbsp;" formControlName="meetingTitle"
+            [ngClass]="{ 'is-invalid': submitted && form.meetingTitle.errors }" />
+          <div *ngIf="submitted && form.meetingTitle.errors" class="invalid-feedback d-block">
+            <div *ngIf="form.meetingTitle.errors.required">
+              You should name your metting!!!
+            </div>
           </div>
+          <span class="label">Meeting title</span>
         </label>
       </div>
-      <div class="form-group">
-          <button class="btn btn-primary">Add Participant</button>
+
+      <!-- Meeting participants -->
+      <h3 class="initial-title">
+        Please, include as many participants as you want to your:
+        <span>{{form.meetingTitle.value ? form.meetingTitle.value : '???????????'}}</span>
+      </h3>
+      <div class="row">
+        <form class="col-lg-6 col-md-6 col-sm-12" [formGroup]="nextParticipant" (ngSubmit)="addParticipant()">
+          <div class="form-group">
+            <label for="name" class="cool-input">
+              <input type="text" id="name" placeholder="&nbsp;" formControlName="participantName"
+                [ngClass]="{ 'is-invalid': pSubmitted && pForm.participantName.errors }" />
+              <div *ngIf="pSubmitted && pForm.participantName.errors" class="invalid-feedback d-block">
+                <div *ngIf="pForm.participantName.errors.required">
+                  You should name your participant!!!
+                </div>
+              </div>
+              <span class="label">Participant name</span>
+            </label>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <button class="btn btn-primary">Add Participant</button>
+          </div>
+        </form>
+        <div class="col-lg-6 col-md-6 col-sm-12 participants-title">
+          <h4>
+            Scrum Participants:
+          </h4>
+          <div formArrayName="participants"
+            *ngFor="let p of scrumMeetingForm.get('participants').controls; let i = index;">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <span>Name: </span><span target="value">{{p.value.participantName}}</span>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12">
+                <span>Turn: </span><span target="value">{{p.value.participantTurn}}</span>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <span>Goes first: </span><span target="value">{{p.value.isActiveParticipant ? 'Yes!' : 'Nope'}}</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="pSubmitted && pForm.participants.errors" class="invalid-feedback d-block">
+            You should have at least two participants!!!
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+        <button class="btn btn-warning">Create Scrum!</button>
       </div>
     </form>
-    <div class="col-lg-12 col-md-12 col-sm-12">
-      <h2 class="guest-list" *ngFor="let guest of participants; index as turn;">
-        {{guest.name}}<span style="color: black;">, Turn:</span> {{turn}}
-      </h2>
-    </div>
   </div>
 </div>

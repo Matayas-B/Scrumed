@@ -1,10 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { GuestService } from 'src/api/services/guest.service';
 import { Guest } from 'src/api/models/guest';
 import { TimerService } from 'src/api/services/timer.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Scrum } from 'src/api/models/scrum';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-scrum-timer',
@@ -19,27 +17,27 @@ export class ScrumTimerComponent implements OnInit {
   minutesPerGuest: number;
 
   constructor(
-    private guestService: GuestService,
     private timerService: TimerService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   enableNextUser() {
-    var currentTurn = this.activeGuest.turn + 1;
-    this.activeGuest = this.guestList.find(g => g.turn === currentTurn);
+    var currentTurn = this.activeGuest.participantTurn + 1;
+    this.activeGuest = this.guestList.find(g => g.participantTurn === currentTurn);
     if (this.activeGuest === undefined)
       this.router.navigate(['/scrum-finished']);
   }
 
   ngOnInit() {
-    forkJoin(
-      this.timerService.getScrum(),
-      this.guestService.getGuests())
-      .subscribe(([scrum, guests]) => {
+    this.route.paramMap.subscribe(params => {
+      var scrumId = params.get('id');
+      this.timerService.getScrum(scrumId).subscribe(scrum => {
         this.currentScrum = scrum;
-        this.guestList = guests;
+        this.guestList = this.currentScrum.guests;
         this.minutesPerGuest = this.currentScrum.minutesPerGuest;
-        this.activeGuest = this.guestList.find(g => g.isActive);
-      });
+        this.activeGuest = this.guestList.find(g => g.isActiveParticipant);
+      })
+    })
   }
 }
