@@ -68,7 +68,7 @@
             Scrum Participants
           </h4>
           <div formArrayName="participants"
-            *ngFor="let p of scrumMeetingForm.get('participants').controls; let i = index;">
+            *ngFor="let p of scrumMeetingForm.get('participants')['controls']; let i = index;">
             <div class="mt-3 mb-3">
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12">

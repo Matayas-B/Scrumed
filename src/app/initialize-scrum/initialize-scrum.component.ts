@@ -30,7 +30,7 @@ export class InitializeScrumComponent implements OnInit {
   get form() { return this.scrumMeetingForm.controls; }
   get pForm() { return this.nextParticipant.controls; }
 
-  addParticipant(name: string) {
+  addParticipant() {
     this.pSubmitted = true;
     if (this.nextParticipant.invalid)
       return;

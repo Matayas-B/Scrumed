@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GuestComponent } from './guest/guest.component';
 import { GuestTimerComponent } from './guest-timer/guest-timer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ScrumTimerComponent } from './scrum-timer/scrum-timer.component';
@@ -16,7 +15,6 @@ import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.co
 @NgModule({
   declarations: [
     AppComponent,
-    GuestComponent,
     GuestTimerComponent,
     PageNotFoundComponent,
     ScrumTimerComponent,
