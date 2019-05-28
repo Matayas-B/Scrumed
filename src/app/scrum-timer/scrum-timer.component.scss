@@ -31,9 +31,6 @@
     animation-play-state: paused;
   }
 
-  // .wrapper:hover .spinner,
-  // .wrapper:hover .filler,
-  // .wrapper:hover .mask
   .run-animation {
     animation-play-state: running !important;
   }
@@ -77,9 +74,6 @@
   color: #f07c22;
 }
 
-.btn {
-  margin-top: 10%;
-}
 .btn-warning {
   background-color: #f07c22 !important;
   width: 30%;

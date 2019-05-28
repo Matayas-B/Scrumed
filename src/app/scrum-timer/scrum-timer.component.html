@@ -5,9 +5,9 @@
       </app-guest-timer>
     </div>
     <div class="wrapper">
-      <div class="spinner pie" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
-      <div class="filler pie" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
-      <div class="mask" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
+      <div class="spinner pie" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 59) + 's'}"></div>
+      <div class="filler pie" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 59) + 's'}"></div>
+      <div class="mask" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 59) + 's'}"></div>
     </div>
   </div>
   <div class="col-lg-12 col-md-12 col-sm-12 text-center">
