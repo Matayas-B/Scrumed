@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  serviceBaseUrl: 'https://scrummed-backend.herokuapp.com/'
 };
