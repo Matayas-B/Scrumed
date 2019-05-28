@@ -28,7 +28,7 @@ export class TimerComponent implements OnInit {
   ) { }
 
   rebootTimer() {
-    this.minutes = this.timeBurst > 10 ? this.timeBurst.toString() : '0' + this.timeBurst.toString();
+    this.minutes = this.timeBurst > 9 ? this.timeBurst.toString() : '0' + this.timeBurst.toString();
     this.seconds = '00';
     this.remainingTime = this.timeBurst * 60;
   }
