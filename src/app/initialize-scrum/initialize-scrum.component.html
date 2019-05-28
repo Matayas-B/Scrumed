@@ -31,9 +31,7 @@
               <input type="number" min="0" id="minutes" placeholder="&nbsp;" formControlName="minutesPerGuest"
                 [ngClass]="{ 'is-invalid': submitted && form.minutesPerGuest.errors }" />
               <div *ngIf="submitted && form.minutesPerGuest.errors" class="invalid-feedback d-block">
-                <div *ngIf="form.minutesPerGuest.errors.required">
-                  Set these minutes!!!
-                </div>
+                Set these minutes!!!
               </div>
             </label>
           </div>
@@ -86,7 +84,7 @@
               </div>
             </div>
           </div>
-          <div *ngIf="pSubmitted && pForm.participants.errors" class="invalid-feedback d-block">
+          <div *ngIf="submitted && form.participants.errors" class="invalid-feedback d-block">
             You should have at least two participants!!!
           </div>
         </div>

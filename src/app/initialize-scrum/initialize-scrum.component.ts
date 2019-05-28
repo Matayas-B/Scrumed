@@ -85,7 +85,7 @@ export class InitializeScrumComponent implements OnInit {
     this.scrumMeetingForm = this.formBuilder.group({
       meetingTitle: ['', Validators.required],
       minutesPerGuest: [0, Validators.min(1)],
-      participants: this.formBuilder.array([], Validators.minLength(2))
+      participants: this.formBuilder.array([], Validators.minLength(3))
     });
   }
 }
