@@ -28,13 +28,15 @@
     z-index: 200;
     border-right: none;
     animation: rota linear infinite;
+    animation-play-state: paused;
   }
 
   // .wrapper:hover .spinner,
   // .wrapper:hover .filler,
-  // .wrapper:hover .mask {
-  //   animation-play-state: running;
-  // }
+  // .wrapper:hover .mask
+  .run-animation {
+    animation-play-state: running !important;
+  }
 
   .wrapper .filler {
     border-radius: 0 100% 100% 0 / 0 50% 50% 0;
@@ -42,6 +44,7 @@
     opacity: 0;
     z-index: 100;
     animation: opa steps(1,end) infinite reverse;
+    animation-play-state: paused;
     border-left: none;
   }
 
@@ -53,6 +56,7 @@
     opacity: 0;
     z-index: 300;
     animation: opa steps(1,end) infinite;
+    animation-play-state: paused;
   }
 
   @keyframes rota {
@@ -71,4 +75,14 @@
   font-size: 30px;
   text-align: center;
   color: #f07c22;
+}
+
+.btn {
+  margin-top: 10%;
+}
+.btn-warning {
+  background-color: #f07c22 !important;
+  width: 30%;
+  font-size: 30px;
+  font-family: aclonica;
 }

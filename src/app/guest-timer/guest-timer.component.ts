@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { interval } from 'rxjs';
 import { Guest } from 'src/api/models/guest';
 import { EventEmitter } from '@angular/core';
-import { trigger, state, style, transition, animate, useAnimation } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { TimerService } from 'src/api/services/timer.service';
 
 const secondsCounter = interval(1000);
 
@@ -27,6 +28,7 @@ export class GuestTimerComponent implements OnInit {
 
   currentState = 'initial';
   activeUserRemainingSeconds: number;
+  isRunning: boolean = false;
 
   @Input() activeUser: Guest;
 
@@ -34,7 +36,9 @@ export class GuestTimerComponent implements OnInit {
 
   @Output() nextUser: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private timerService: TimerService
+  ) { }
 
   changeTitleSize() {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
@@ -45,14 +49,17 @@ export class GuestTimerComponent implements OnInit {
   }
 
   countdown() {
-    --this.activeUserRemainingSeconds;
-    if (this.activeUserRemainingSeconds === 0) {
-      this.nextTurn();
-      this.activeUserRemainingSeconds = this.minutesPerTurn * 60;
+    if (this.isRunning) {
+      --this.activeUserRemainingSeconds;
+      if (this.activeUserRemainingSeconds === 0) {
+        this.nextTurn();
+        this.activeUserRemainingSeconds = this.minutesPerTurn * 60;
+      }
     }
   }
 
   ngOnInit() {
+    this.timerService.pauseAndResumeSubject.subscribe(newState => this.isRunning = newState);
     this.activeUserRemainingSeconds = this.minutesPerTurn * 60;
     secondsCounter.subscribe(() => this.countdown());
   }

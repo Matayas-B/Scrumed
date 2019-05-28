@@ -10,16 +10,34 @@
 
       <!-- Meeting Title -->
       <div class="form-group text-center">
-        <label for="title" class="cool-input">
-          <input type="text" id="title" placeholder="&nbsp;" formControlName="meetingTitle"
-            [ngClass]="{ 'is-invalid': submitted && form.meetingTitle.errors }" />
-          <div *ngIf="submitted && form.meetingTitle.errors" class="invalid-feedback d-block">
-            <div *ngIf="form.meetingTitle.errors.required">
-              You should name your metting!!!
-            </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <label for="title" class="cool-input">
+              <input type="text" id="title" placeholder="&nbsp;" formControlName="meetingTitle"
+                [ngClass]="{ 'is-invalid': submitted && form.meetingTitle.errors }" />
+              <div *ngIf="submitted && form.meetingTitle.errors" class="invalid-feedback d-block">
+                <div *ngIf="form.meetingTitle.errors.required">
+                  You should name your metting!!!
+                </div>
+              </div>
+              <span class="label">Meeting title</span>
+            </label>
           </div>
-          <span class="label">Meeting title</span>
-        </label>
+          <div class="col-lg-3 col-md-3 col-sm-12 cool-span">
+            <div>Minutes per guest:</div>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-12">
+            <label for="minutes" class="cool-input" target="minutesPerGuest">
+              <input type="number" min="0" id="minutes" placeholder="&nbsp;" formControlName="minutesPerGuest"
+                [ngClass]="{ 'is-invalid': submitted && form.minutesPerGuest.errors }" />
+              <div *ngIf="submitted && form.minutesPerGuest.errors" class="invalid-feedback d-block">
+                <div *ngIf="form.minutesPerGuest.errors.required">
+                  Set these minutes!!!
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
       </div>
 
       <!-- Meeting participants -->
@@ -30,7 +48,7 @@
       <div class="row">
         <form class="col-lg-6 col-md-6 col-sm-12" [formGroup]="nextParticipant" (ngSubmit)="addParticipant()">
           <div class="form-group">
-            <label for="name" class="cool-input">
+            <label for="name" class="cool-input" target="name">
               <input type="text" id="name" placeholder="&nbsp;" formControlName="participantName"
                 [ngClass]="{ 'is-invalid': pSubmitted && pForm.participantName.errors }" />
               <div *ngIf="pSubmitted && pForm.participantName.errors" class="invalid-feedback d-block">
@@ -47,19 +65,24 @@
         </form>
         <div class="col-lg-6 col-md-6 col-sm-12 participants-title">
           <h4>
-            Scrum Participants:
+            Scrum Participants
           </h4>
           <div formArrayName="participants"
             *ngFor="let p of scrumMeetingForm.get('participants').controls; let i = index;">
-            <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <span>Name: </span><span target="value">{{p.value.participantName}}</span>
-              </div>
-              <div class="col-lg-2 col-md-2 col-sm-12">
-                <span>Turn: </span><span target="value">{{p.value.participantTurn}}</span>
-              </div>
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <span>Goes first: </span><span target="value">{{p.value.isActiveParticipant ? 'Yes!' : 'Nope'}}</span>
+            <div class="mt-3 mb-3">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <span>Name: </span><span target="value">{{p.value.participantName}}</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                  <span>Turn: </span><span target="value">{{p.value.participantTurn}}</span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <span>Goes first: </span><span target="value">{{p.value.isActiveParticipant ? 'Yes!' : 'Nope'}}</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                  <span class="x" (click)="removeParticipant(i)"></span>
+                </div>
               </div>
             </div>
           </div>

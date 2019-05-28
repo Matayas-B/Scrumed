@@ -5,17 +5,23 @@
     font-size: 60px;
     color: #f07c22;
   }
-  
+
   .initial-title {
     margin-top: 10%;
-  
+
     span {
       font-family: 'Aclonica';
     }
   }
-  
+
   * {
     box-sizing: border-box;
+  }
+  .cool-span {
+    font-size: 16px;
+    color: #9098a9;
+    font-weight: 500;
+    padding-top: 50px;
   }
   .cool-input {
     position: relative;
@@ -32,6 +38,15 @@
     font-weight: 500;
     transform-origin: 0 0;
     transition: all 0.2s ease;
+  }
+  label[target=minutesPerGuest] {
+    margin-top: 40%;
+  }
+  label[target=minutesPerGuest] input {
+    text-align: center;
+  }
+  label[target=name] {
+    margin-top: 12%;
   }
   .cool-input .border {
     position: absolute;
@@ -104,3 +119,34 @@
       margin: 0% 5% 0% 0%;
     }
   }
+
+  .x {
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    border: 2px solid #eef5df;
+    background-color: #f07c22;
+    border-radius: 50%;
+    }
+  .x::before, .x::after {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    width: 13px;
+    height: 3px;
+    content: "";
+    background-color: #eef5df;
+    display: none;
+    }
+  .x::before {
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    }
+  .x::after {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    }
+  .x:hover { cursor: pointer; }
+  .x:hover::before, .x:hover::after { display: block; }

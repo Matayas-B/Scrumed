@@ -16,11 +16,21 @@ export class ScrumTimerComponent implements OnInit {
   currentScrum: Scrum;
   minutesPerGuest: number;
 
+  wasStarted: boolean = false;
+  isRunning: boolean = false;
+
   constructor(
     private timerService: TimerService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
+
+  pauseScrum() {
+    this.wasStarted = true;
+
+    this.timerService.pauseOrResumeScrum(!this.isRunning);
+    this.isRunning = !this.isRunning;
+  }
 
   enableNextUser() {
     var currentTurn = this.activeGuest.participantTurn + 1;

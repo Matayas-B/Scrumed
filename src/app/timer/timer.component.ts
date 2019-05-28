@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { interval } from 'rxjs';
+import { TimerService } from 'src/api/services/timer.service';
 
 const secondsCounter = interval(1000);
 
@@ -20,7 +21,11 @@ export class TimerComponent implements OnInit {
   seconds: string;
   remainingTime: number;
 
-  constructor() { }
+  isRunning: boolean = false;
+
+  constructor(
+    private timerService: TimerService
+  ) { }
 
   rebootTimer() {
     this.minutes = this.timeBurst > 10 ? this.timeBurst.toString() : '0' + this.timeBurst.toString();
@@ -42,16 +47,19 @@ export class TimerComponent implements OnInit {
   }
 
   decreaseTimer() {
-    --this.remainingTime;
-    if (this.remainingTime === 0) {
-      this.rebootTimer();
-    }
-    else {
-      this.decreaseTime();
+    if (this.isRunning) {
+      --this.remainingTime;
+      if (this.remainingTime === 0) {
+        this.rebootTimer();
+      }
+      else {
+        this.decreaseTime();
+      }
     }
   }
 
   ngOnInit() {
+    this.timerService.pauseAndResumeSubject.subscribe(newState => this.isRunning = newState);
     if (this.isCountdown) {
       this.rebootTimer();
       secondsCounter.subscribe(() => this.decreaseTimer());

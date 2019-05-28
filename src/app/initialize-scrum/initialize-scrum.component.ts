@@ -45,6 +45,21 @@ export class InitializeScrumComponent implements OnInit {
     this.pSubmitted = false;
   }
 
+  removeParticipant(index: number) {
+    this.participants = this.scrumMeetingForm.get('participants') as FormArray;
+    var participant = this.participants.value[index];
+
+    this.participants.removeAt(index);
+    this.participants.value.forEach((p, i) => {
+      if (i >= index)
+        --p.participantTurn;
+    });
+    if (participant.isActiveParticipant) {
+      this.participants.value[0].isActiveParticipant = true;
+    }
+    --this.nextTurn;
+  }
+
   createScrumMeeting() {
     this.submitted = true;
 
@@ -53,7 +68,7 @@ export class InitializeScrumComponent implements OnInit {
 
     var newScrum = new Scrum(
       this.scrumMeetingForm.get('meetingTitle').value,
-      1,
+      this.scrumMeetingForm.get('minutesPerGuest').value,
       this.scrumMeetingForm.get('participants').value
     );
     this.timerService.createScrum(newScrum).subscribe(id => {
@@ -69,6 +84,7 @@ export class InitializeScrumComponent implements OnInit {
     });
     this.scrumMeetingForm = this.formBuilder.group({
       meetingTitle: ['', Validators.required],
+      minutesPerGuest: [0, Validators.min(1)],
       participants: this.formBuilder.array([], Validators.minLength(2))
     });
   }
