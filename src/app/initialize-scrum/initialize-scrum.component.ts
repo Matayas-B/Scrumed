@@ -54,7 +54,7 @@ export class InitializeScrumComponent implements OnInit {
       if (i >= index)
         --p.participantTurn;
     });
-    if (participant.isActiveParticipant) {
+    if (this.participants.value.length > 0 && participant.isActiveParticipant) {
       this.participants.value[0].isActiveParticipant = true;
     }
     --this.nextTurn;
