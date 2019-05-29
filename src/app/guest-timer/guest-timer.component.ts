@@ -28,6 +28,8 @@ export class GuestTimerComponent implements OnInit {
 
   currentState = 'initial';
   activeUserRemainingSeconds: number;
+
+  wasStarted: boolean = false;
   isRunning: boolean = false;
 
   @Input() activeUser: Guest;
@@ -42,6 +44,13 @@ export class GuestTimerComponent implements OnInit {
 
   changeTitleSize() {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
+  }
+
+  pauseScrum() {
+    this.wasStarted = true;
+
+    this.timerService.pauseOrResumeScrum(!this.isRunning);
+    this.isRunning = !this.isRunning;
   }
 
   nextTurn() {
@@ -59,7 +68,6 @@ export class GuestTimerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timerService.pauseAndResumeSubject.subscribe(newState => this.isRunning = newState);
     this.activeUserRemainingSeconds = this.minutesPerTurn * 60;
     secondsCounter.subscribe(() => this.countdown());
   }

@@ -1,6 +1,15 @@
 <div class="countdown">
-  <h1 *ngIf="activeUser" [@changeTitleSize]="{value: currentState}" (mouseover)="changeTitleSize()" (mouseleave)="changeTitleSize()">
+  <h1 *ngIf="activeUser" [@changeTitleSize]="{value: currentState}" (mouseover)="changeTitleSize()"
+    (mouseleave)="changeTitleSize()">
     {{activeUser.participantName}}
   </h1>
-  <app-timer *ngIf="minutesPerTurn" [isCountdown]="true" [timeBurst]="minutesPerTurn"></app-timer>
+  <div class="row timer">
+    <app-timer *ngIf="minutesPerTurn" [isCountdown]="true" [timeBurst]="minutesPerTurn"></app-timer>
+  </div>
+  <div class="row mt-5">
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+      <button class="btn btn-warning" *ngIf="!wasStarted" (click)="pauseScrum()">Start Scrum!</button>
+      <button class="btn btn-warning" *ngIf="wasStarted" (click)="pauseScrum()">{{isRunning ? 'Pause' : 'Resume'}} Scrum!</button>
+    </div>
+  </div>
 </div>
