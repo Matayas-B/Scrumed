@@ -16,6 +16,10 @@ export class ScrumTimerComponent implements OnInit {
   currentScrum: Scrum;
   minutesPerGuest: number;
 
+<<<<<<< HEAD
+=======
+  // wasStarted: boolean = false;
+>>>>>>> 56e06bc831c4611cd452508da30a74bbb0873bb7
   isRunning: boolean = false;
 
   constructor(
@@ -24,6 +28,16 @@ export class ScrumTimerComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+<<<<<<< HEAD
+=======
+  // pauseScrum() {
+  //   this.wasStarted = true;
+
+  //   this.timerService.pauseOrResumeScrum(!this.isRunning);
+  //   this.isRunning = !this.isRunning;
+  // }
+
+>>>>>>> 56e06bc831c4611cd452508da30a74bbb0873bb7
   enableNextUser() {
     var currentTurn = this.activeGuest.participantTurn + 1;
     this.activeGuest = this.guestList.find(g => g.participantTurn === currentTurn);
