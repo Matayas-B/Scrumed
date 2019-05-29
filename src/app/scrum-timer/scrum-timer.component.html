@@ -10,14 +10,4 @@
       <div class="mask" [ngClass]="{'run-animation': isRunning}" [ngStyle]="{'animation-duration': (minutesPerGuest * 60) + 's'}"></div>
     </div>
   </div>
-  <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-    <button class="btn btn-warning" *ngIf="!wasStarted" (click)="pauseScrum()">Start Scrum!</button>
-    <button class="btn btn-warning" *ngIf="wasStarted" (click)="pauseScrum()">{{isRunning ? 'Pause' : 'Resume'}} Scrum!</button>
-  </div>
-  <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-    <h1 class="total-title">Total Scrum Meeting Time</h1>
-    <div style="margin-left: 20%;">
-      <app-timer style="margin-left: 20%;" [isCountdown]="false" [totalTime]="currentScrum.totalTime"></app-timer>
-    </div>
-  </div> -->
 </div>

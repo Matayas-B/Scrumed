@@ -16,7 +16,6 @@ export class ScrumTimerComponent implements OnInit {
   currentScrum: Scrum;
   minutesPerGuest: number;
 
-  wasStarted: boolean = false;
   isRunning: boolean = false;
 
   constructor(
@@ -24,13 +23,6 @@ export class ScrumTimerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) { }
-
-  pauseScrum() {
-    this.wasStarted = true;
-
-    this.timerService.pauseOrResumeScrum(!this.isRunning);
-    this.isRunning = !this.isRunning;
-  }
 
   enableNextUser() {
     var currentTurn = this.activeGuest.participantTurn + 1;
@@ -40,6 +32,7 @@ export class ScrumTimerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.timerService.pauseAndResumeSubject.subscribe(newState => this.isRunning = newState);
     this.route.paramMap.subscribe(params => {
       var scrumId = params.get('id');
       this.timerService.getScrum(scrumId).subscribe(scrum => {

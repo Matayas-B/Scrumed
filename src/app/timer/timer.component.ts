@@ -65,7 +65,7 @@ export class TimerComponent implements OnInit {
       secondsCounter.subscribe(() => this.decreaseTimer());
     }
     else {
-      //TODO: Problem is with this.totalTime.getMinutes() ---> totalTime is not being parsed as a Date.
+      //TODO: Match totalMinutes from Scrum JSON
       this.minutes = this.totalTime.getMinutes() > 10 ? this.totalTime.getMinutes().toString() : '0' + this.totalTime.getMinutes().toString();
       this.seconds = '00';
       secondsCounter.subscribe(() => this.decreaseTime());
