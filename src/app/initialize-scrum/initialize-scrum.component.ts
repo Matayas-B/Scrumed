@@ -32,8 +32,8 @@ export class InitializeScrumComponent implements OnInit {
   get form() { return this.scrumMeetingForm.controls; }
   get pForm() { return this.nextParticipant.controls; }
 
-  toastError(errorMessage: string, position: string) {
-    this.toastr.error(errorMessage, "Uuups!", {
+  toastError(errorMessage: string, errorTitle: string, position: string) {
+    this.toastr.warning(errorMessage, errorTitle, {
       positionClass: position
     });
   }
@@ -41,7 +41,7 @@ export class InitializeScrumComponent implements OnInit {
   addParticipant() {
     this.pSubmitted = true;
     if (this.nextParticipant.invalid) {
-      this.toastError("You should name your participant!!!", "toast-bottom-center");
+      this.toastError("You should name your participant!!!", "Add participant", "toast-bottom-center");
       return;
     }
 
@@ -75,11 +75,11 @@ export class InitializeScrumComponent implements OnInit {
 
     if (this.scrumMeetingForm.invalid) {
       if (this.form.meetingTitle.errors)
-        this.toastError("You should name your metting!!!", "toast-bottom-right");
+        this.toastError("You should name your metting!!!", "Name your meeting", "toast-bottom-right");
       if (this.form.minutesPerGuest.errors)
-        this.toastError("Set the minutes for each round!!!", "toast-bottom-right");
-      if (this.form.participants.errors)
-        this.toastError("You should have at least three participants!!!", "toast-bottom-right");
+        this.toastError("Set the minutes for each round!!!", "Set minutes", "toast-bottom-right");
+      if (this.form.participants.value.length < 3)
+        this.toastError("You should have at least three participants!!!", "Scrum participants", "toast-bottom-right");
       return;
     }
 
