@@ -4,12 +4,12 @@
     {{activeUser.participantName}}
   </h1>
   <div class="row timer">
-    <app-timer *ngIf="minutesPerTurn" [isCountdown]="true" [timeBurst]="minutesPerTurn"></app-timer>
+    <app-timer *ngIf="currentScrum" [isCountdown]="true" [timeBurst]="currentScrum.minutesPerGuest"></app-timer>
   </div>
   <div class="row mt-5">
     <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-      <button class="btn btn-warning" *ngIf="!wasStarted" (click)="pauseScrum()">Start Scrum!</button>
-      <button class="btn btn-warning" *ngIf="wasStarted" (click)="pauseScrum()">{{isRunning ? 'Pause' : 'Resume'}} Scrum!</button>
+      <button class="btn btn-warning" *ngIf="!wasStarted" (click)="startScrum()">Start Scrum!</button>
+      <button class="btn btn-warning" *ngIf="wasStarted" (click)="pauseOrResumeScrum()">{{isRunning ? 'Pause' : 'Resume'}} Scrum!</button>
     </div>
   </div>
 </div>

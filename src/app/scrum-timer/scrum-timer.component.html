@@ -1,7 +1,7 @@
 <div *ngIf="activeGuest && minutesPerGuest" class="container">
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
-      <app-guest-timer [activeUser]="activeGuest" [minutesPerTurn]="minutesPerGuest" (nextUser)="enableNextUser()">
+      <app-guest-timer [activeUser]="activeGuest" [currentScrum]="currentScrum" (nextUser)="enableNextUser()">
       </app-guest-timer>
     </div>
     <div class="wrapper">

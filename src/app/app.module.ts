@@ -13,6 +13,10 @@ import { ScrumFinishedComponent } from './scrum-finished/scrum-finished.componen
 import { TimerComponent } from './timer/timer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+
+const config: SocketIoConfig = { url: environment.serviceBaseUrl, options: {} };
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.co
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]
