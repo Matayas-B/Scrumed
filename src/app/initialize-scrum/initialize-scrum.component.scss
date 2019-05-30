@@ -22,6 +22,7 @@
     color: #9098a9;
     font-weight: 500;
     padding-top: 50px;
+    text-align: right;
   }
   .cool-input {
     position: relative;
@@ -102,6 +103,16 @@
     font-size: 30px;
     font-family: aclonica;
   }
+  .btn-success {
+    width: 30%;
+    font-size: 15px;
+    font-family: aclonica;
+  }
+  .btn-danger {
+    width: 30%;
+    font-size: 15px;
+    font-family: aclonica;
+  }
 
   .guest-list {
     margin-top: 2%;
@@ -112,7 +123,7 @@
 
   .participants-title {
     h4 {
-      margin: 8% 0% 2% 0%;
+      margin: 2% 0% 2% 0%;
     }
 
     span {
