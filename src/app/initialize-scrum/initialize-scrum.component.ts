@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import { TimerService } from 'src/api/services/timer.service';
 import { Scrum } from 'src/api/models/scrum';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-initialize-scrum',
@@ -23,17 +24,26 @@ export class InitializeScrumComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private timerService: TimerService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   // Getter to access form controls for validation
   get form() { return this.scrumMeetingForm.controls; }
   get pForm() { return this.nextParticipant.controls; }
 
+  toastError(errorMessage: string, position: string) {
+    this.toastr.error(errorMessage, "Uuups!", {
+      positionClass: position
+    });
+  }
+
   addParticipant() {
     this.pSubmitted = true;
-    if (this.nextParticipant.invalid)
+    if (this.nextParticipant.invalid) {
+      this.toastError("You should name your participant!!!", "toast-bottom-center");
       return;
+    }
 
     this.pForm['participantTurn'].setValue(this.nextTurn);
     this.pForm['isActiveParticipant'].setValue(this.nextTurn === 1);
@@ -63,8 +73,15 @@ export class InitializeScrumComponent implements OnInit {
   createScrumMeeting() {
     this.submitted = true;
 
-    if (this.scrumMeetingForm.invalid)
+    if (this.scrumMeetingForm.invalid) {
+      if (this.form.meetingTitle.errors)
+        this.toastError("You should name your metting!!!", "toast-bottom-right");
+      if (this.form.minutesPerGuest.errors)
+        this.toastError("Set the minutes for each round!!!", "toast-bottom-right");
+      if (this.form.participants.errors)
+        this.toastError("You should have at least three participants!!!", "toast-bottom-right");
       return;
+    }
 
     var newScrum = new Scrum(
       this.scrumMeetingForm.get('meetingTitle').value,

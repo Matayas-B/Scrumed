@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArchwizardModule } from 'angular-archwizard';
+import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +29,7 @@ import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.co
     AppRoutingModule,
     BrowserAnimationsModule,
     ArchwizardModule,
+    ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

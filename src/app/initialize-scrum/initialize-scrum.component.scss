@@ -6,14 +6,6 @@
     color: #f07c22;
   }
 
-  .initial-title {
-    margin-top: 10%;
-
-    span {
-      font-family: 'Aclonica';
-    }
-  }
-
   * {
     box-sizing: border-box;
   }
@@ -21,12 +13,13 @@
     font-size: 16px;
     color: #9098a9;
     font-weight: 500;
-    padding-top: 50px;
-    text-align: right;
+
+    h4 {
+      font-family: 'Aclonica';
+    }
   }
   .cool-input {
     position: relative;
-    margin-top: 5%;
     width: 100%;
     max-width: 280px;
   }
@@ -39,15 +32,6 @@
     font-weight: 500;
     transform-origin: 0 0;
     transition: all 0.2s ease;
-  }
-  label[target=minutesPerGuest] {
-    margin-top: 40%;
-  }
-  label[target=minutesPerGuest] input {
-    text-align: center;
-  }
-  label[target=name] {
-    margin-top: 12%;
   }
   .cool-input .border {
     position: absolute;
@@ -93,27 +77,45 @@
     font-size: 16px;
     font-weight: 500;
   }
-
-  .btn {
-    margin-top: 10%;
-  }
   .btn-warning {
     background-color: #f07c22 !important;
-    width: 30%;
     font-size: 30px;
     font-family: aclonica;
   }
   .btn-success {
-    width: 30%;
     font-size: 15px;
     font-family: aclonica;
   }
   .btn-danger {
-    width: 30%;
     font-size: 15px;
     font-family: aclonica;
   }
-
+  .btn-add-guest {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #e00bc7);
+    background-image: -moz-linear-gradient(top, #3498db, #e00bc7);
+    background-image: -ms-linear-gradient(top, #3498db, #e00bc7);
+    background-image: -o-linear-gradient(top, #3498db, #e00bc7);
+    background-image: linear-gradient(to bottom, #3498db, #e00bc7);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  .btn-add-guest:hover {
+    background: #1cff3e;
+    background-image: -webkit-linear-gradient(top, #1cff3e, #f71125);
+    background-image: -moz-linear-gradient(top, #1cff3e, #f71125);
+    background-image: -ms-linear-gradient(top, #1cff3e, #f71125);
+    background-image: -o-linear-gradient(top, #1cff3e, #f71125);
+    background-image: linear-gradient(to bottom, #1cff3e, #f71125);
+    text-decoration: none;
+  }
+  
   .guest-list {
     margin-top: 2%;
     font-family: 'Aclonica';
@@ -121,19 +123,15 @@
     text-transform: capitalize;
   }
 
+  .participants {
+    font-weight: 500;
+  }
+  .participants-scroll {
+    overflow-y: auto;
+    height: 310px;
+  }
   .participants-title {
-    h4 {
-      margin: 2% 0% 2% 0%;
-    }
-
-    span {
-      font-size: 17px;
-      font-weight: 500;
-    }
-
-    span[target=value] {
-      margin: 0% 5% 0% 0%;
-    }
+    font-family: aclonica;
   }
 
   .x {
