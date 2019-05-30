@@ -11,7 +11,7 @@ const secondsCounter = interval(1000);
 })
 export class TimerComponent implements OnInit {
 
-  @Input() totalTime: Date;
+  @Input() totalTime: string;
 
   @Input() timeBurst: number;
 
@@ -65,8 +65,7 @@ export class TimerComponent implements OnInit {
       secondsCounter.subscribe(() => this.decreaseTimer());
     }
     else {
-      //TODO: Match totalMinutes from Scrum JSON
-      this.minutes = this.totalTime.getMinutes() > 10 ? this.totalTime.getMinutes().toString() : '0' + this.totalTime.getMinutes().toString();
+      this.minutes = parseInt(this.totalTime) > 10 ? this.totalTime : '0' + this.totalTime;
       this.seconds = '00';
       secondsCounter.subscribe(() => this.decreaseTime());
     }
