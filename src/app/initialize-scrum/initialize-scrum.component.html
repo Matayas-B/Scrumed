@@ -40,6 +40,10 @@
                     [ngClass]="{ 'is-invalid': submitted && form.minutesPerGuest.errors }" />
                 </label>
               </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 mt-5 pt-3">
+                <input class="styled-checkbox" id="countdown" type="checkbox" formControlName="isCountdown">
+                <label for="countdown" class="cool-span">Is countdown?</label>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -86,7 +90,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 mx-auto" [ngClass]="{'participants-scroll': form.participants.value.length > 5}">
+            <div class="col-lg-6 col-md-6 col-sm-12 mx-auto"
+              [ngClass]="{'participants-scroll': form.participants.value.length > 5}">
               <div formArrayName="participants">
                 <div class="mt-3 mb-3 participants text-center">
                   <table class="table">
@@ -99,7 +104,8 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let p of scrumMeetingForm.get('participants')['controls']; let i = index;" target="value">
+                      <tr *ngFor="let p of scrumMeetingForm.get('participants')['controls']; let i = index;"
+                        target="value">
                         <td>{{p.value.participantName}}</td>
                         <td>{{p.value.participantTurn}}</td>
                         <td>{{p.value.isActiveParticipant ? 'Yes!' : 'Nope'}}</td>

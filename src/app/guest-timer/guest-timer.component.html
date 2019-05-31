@@ -9,8 +9,8 @@
   </div>
   <div class="row mt-5">
     <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-      <button class="btn btn-warning" *ngIf="!wasStarted" (click)="startScrum()">Start Scrum!</button>
-      <button class="btn btn-warning" *ngIf="wasStarted" (click)="pauseOrResumeScrum()">{{isRunning ? 'Pause' : 'Resume'}} Scrum!</button>
+      <button class="btn btn-warning" *ngIf="!wasStarted" (click)="changeScrumState()">Start Scrum!</button>
+      <button class="btn btn-warning" *ngIf="wasStarted" (click)="changeScrumState()">{{isRunning ? 'Pause' : 'Resume'}} Scrum!</button>
     </div>
   </div>
 </div>

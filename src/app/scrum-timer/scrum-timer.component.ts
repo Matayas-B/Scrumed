@@ -32,7 +32,10 @@ export class ScrumTimerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timerService.pauseAndResumeSubject.subscribe(newState => this.isRunning = newState);
+    this.timerService.changeScrumStateSubject.subscribe(scrumData => {
+      this.isRunning = scrumData['isPaused'];
+    });
+    
     this.route.paramMap.subscribe(params => {
       var scrumId = params.get('id');
       this.timerService.getScrum(scrumId).subscribe(scrum => {

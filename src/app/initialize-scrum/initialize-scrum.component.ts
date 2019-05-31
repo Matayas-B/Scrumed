@@ -86,6 +86,7 @@ export class InitializeScrumComponent implements OnInit {
     var newScrum = new Scrum(
       this.scrumMeetingForm.get('meetingTitle').value,
       this.scrumMeetingForm.get('minutesPerGuest').value,
+      this.scrumMeetingForm.get('isCountdown').value,
       this.scrumMeetingForm.get('participants').value
     );
     this.timerService.createScrum(newScrum).subscribe(id => {
@@ -102,6 +103,7 @@ export class InitializeScrumComponent implements OnInit {
     this.scrumMeetingForm = this.formBuilder.group({
       meetingTitle: ['', Validators.required],
       minutesPerGuest: [0, Validators.min(1)],
+      isCountdown: [false],
       participants: this.formBuilder.array([],[Validators.required, Validators.minLength(3)])
     });
   }

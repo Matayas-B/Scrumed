@@ -4,7 +4,6 @@ import { Guest } from 'src/api/models/guest';
 import { EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { TimerService } from 'src/api/services/timer.service';
-import { Socket } from 'ngx-socket-io';
 import { Scrum } from 'src/api/models/scrum';
 
 const secondsCounter = interval(1000);
@@ -40,36 +39,18 @@ export class GuestTimerComponent implements OnInit {
 
   @Output() nextUser: EventEmitter<any> = new EventEmitter();
 
-  constructor(
-    private timerService: TimerService,
-    private socket: Socket
-  ) { }
+  constructor(private timerService: TimerService) { }
 
   changeTitleSize() {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
   }
 
-  startScrum() {
-    this.socket.emit('startScrum', {
-      scrumId: this.currentScrum.id
-    });
-  }
-
-  pauseOrResumeScrum() {
+  changeScrumState() {
     this.timerService.getCurrentTurnTime();
   }
 
   sendCurrentTimeToServer(currentTime: string) {
-    this.socket.emit('pauseScrum', {
-      isPaused: !this.isRunning,
-      minutes: currentTime.substr(0,2),
-      seconds: currentTime.substr(2,2)
-    });
-  }
-
-  changeScrumState(isRunning: boolean) {
-    this.timerService.pauseOrResumeScrum(isRunning);
-    this.isRunning = isRunning;
+    this.timerService.sendCurrentTimeToServer(!this.isRunning, currentTime);
   }
 
   nextTurn() {
@@ -88,14 +69,10 @@ export class GuestTimerComponent implements OnInit {
 
   ngOnInit() {
     /* Sockets Events */
-    this.socket.fromEvent('scrumStarted').subscribe(data => {
+    this.timerService.changeScrumStateSubject.subscribe(scrumData => {
       this.wasStarted = true;
-      this.changeScrumState(!this.isRunning);
-    })
-    this.socket.fromEvent('scrumPaused').subscribe(data => {
-      this.changeScrumState(data['isPaused']);
-      this.timerService.setCurrentTurnTime(data['minutes'], data['seconds']);
-    })
+      this.isRunning = scrumData['isPaused'];
+    });
 
     this.activeUserRemainingSeconds = this.currentScrum.minutesPerGuest * 60;
     secondsCounter.subscribe(() => this.countdown());
