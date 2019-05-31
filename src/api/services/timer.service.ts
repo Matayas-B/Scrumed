@@ -11,6 +11,8 @@ export class TimerService {
 
   baseUrl = environment.serviceBaseUrl;
 
+  getCurrentTimeSubject = new Subject<string>();
+  setCurrentTimeSubject = new Subject<object>();
   pauseAndResumeSubject = new Subject<boolean>();
 
   constructor(private httpClient: HttpClient) { }
@@ -27,6 +29,14 @@ export class TimerService {
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
     return this.httpClient.post<number>(url, scrum, { headers });
+  }
+
+  getCurrentTurnTime() {
+    this.getCurrentTimeSubject.next();
+  }
+
+  setCurrentTurnTime(newMinutes: string, newSeconds: string) {
+    this.setCurrentTimeSubject.next({minutes: newMinutes, seconds: newSeconds});
   }
 
   pauseOrResumeScrum(isRunning: boolean) {

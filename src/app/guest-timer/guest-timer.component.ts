@@ -56,8 +56,14 @@ export class GuestTimerComponent implements OnInit {
   }
 
   pauseOrResumeScrum() {
+    this.timerService.getCurrentTurnTime();
+  }
+
+  sendCurrentTimeToServer(currentTime: string) {
     this.socket.emit('pauseScrum', {
-      isPaused: !this.isRunning
+      isPaused: !this.isRunning,
+      minutes: currentTime.substr(0,2),
+      seconds: currentTime.substr(2,2)
     });
   }
 
@@ -85,11 +91,10 @@ export class GuestTimerComponent implements OnInit {
     this.socket.fromEvent('scrumStarted').subscribe(data => {
       this.wasStarted = true;
       this.changeScrumState(!this.isRunning);
-      console.log(data);
     })
     this.socket.fromEvent('scrumPaused').subscribe(data => {
       this.changeScrumState(data['isPaused']);
-      console.log(data);
+      this.timerService.setCurrentTurnTime(data['minutes'], data['seconds']);
     })
 
     this.activeUserRemainingSeconds = this.currentScrum.minutesPerGuest * 60;

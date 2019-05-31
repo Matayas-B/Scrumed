@@ -4,7 +4,8 @@
     {{activeUser.participantName}}
   </h1>
   <div class="row timer">
-    <app-timer *ngIf="currentScrum" [isCountdown]="true" [timeBurst]="currentScrum.minutesPerGuest"></app-timer>
+    <app-timer *ngIf="currentScrum" [isCountdown]="true" [timeBurst]="currentScrum.minutesPerGuest" 
+    (currentTime)="sendCurrentTimeToServer($event)"></app-timer>
   </div>
   <div class="row mt-5">
     <div class="col-lg-12 col-md-12 col-sm-12 text-center">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { interval } from 'rxjs';
 import { TimerService } from 'src/api/services/timer.service';
 
@@ -16,6 +16,8 @@ export class TimerComponent implements OnInit {
   @Input() timeBurst: number;
 
   @Input() isCountdown: boolean = false;
+
+  @Output() currentTime: EventEmitter<any> = new EventEmitter();
 
   minutes: string;
   seconds: string;
@@ -59,7 +61,14 @@ export class TimerComponent implements OnInit {
   }
 
   ngOnInit() {
+    /* Sockets Events */
     this.timerService.pauseAndResumeSubject.subscribe(newState => this.isRunning = newState);
+    this.timerService.getCurrentTimeSubject.subscribe(() => this.currentTime.emit(this.minutes + this.seconds));
+    this.timerService.setCurrentTimeSubject.subscribe(newTurnTime => {
+      this.minutes = newTurnTime['minutes'];
+      this.seconds = newTurnTime['seconds'];
+    })
+    
     if (this.isCountdown) {
       this.rebootTimer();
       secondsCounter.subscribe(() => this.decreaseTimer());
