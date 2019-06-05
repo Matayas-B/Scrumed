@@ -1,7 +1,7 @@
 import { Guest } from './guest';
 
 export class Scrum {
-  id: number;
+  id: string;
   meetingTitle: string;
   totalTime: Date;
   minutesPerGuest: number;

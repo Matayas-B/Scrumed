@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 mt-5">
                 <label for="title" class="cool-input">
-                  <input type="text" id="title" placeholder="&nbsp;" formControlName="meetingTitle"
+                  <input type="text" id="title" placeholder="&nbsp;" autocomplete="off" formControlName="meetingTitle"
                     [ngClass]="{ 'is-invalid': submitted && form.meetingTitle.errors }" />
                   <span class="label">Meeting title</span>
                 </label>
@@ -35,7 +35,7 @@
               </div>
               <div class="col-lg-1 col-md-1 col-sm-12 mt-5">
                 <label for="minutes" class="cool-input">
-                  <input class="text-center" type="number" min="0" id="minutes" placeholder="&nbsp;"
+                  <input class="text-center" type="number" min="0" id="minutes" autocomplete="off" placeholder="&nbsp;"
                     formControlName="minutesPerGuest"
                     [ngClass]="{ 'is-invalid': submitted && form.minutesPerGuest.errors }" />
                 </label>
@@ -71,7 +71,7 @@
               <div class="col-lg-7 col-md-7 col-sm-12 text-right mt-4">
                 <div class="form-group">
                   <label for="name" class="cool-input">
-                    <input type="text" id="name" placeholder="&nbsp;" formControlName="participantName"
+                    <input type="text" id="name" placeholder="&nbsp;" autocomplete="off" formControlName="participantName"
                       [ngClass]="{ 'is-invalid': pSubmitted && pForm.participantName.errors }" />
                     <span class="label">Participant name</span>
                   </label>
