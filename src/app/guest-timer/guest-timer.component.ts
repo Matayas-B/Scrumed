@@ -49,15 +49,11 @@ export class GuestTimerComponent implements OnInit {
     this.timerService.getCurrentTurnTime(this.currentScrum.id);
   }
 
-  nextTurn() {
-    this.nextUser.emit(null);
-  }
-
   countdown() {
     if (this.isRunning) {
       --this.activeUserRemainingSeconds;
       if (this.activeUserRemainingSeconds === 0) {
-        this.nextTurn();
+        this.nextUser.emit(null);
       }
     }
   }

@@ -50,7 +50,7 @@ export class ScrumTimerComponent implements OnInit {
         this.activeGuest = this.guestList.find(g => g.isActiveParticipant);
 
         if (this.currentScrum.started)
-          this.timerService.getCurrentScrumState(scrumId).subscribe(data => console.log(data));
+          this.timerService.getCurrentScrumState(scrumId);
       })
     })
   }

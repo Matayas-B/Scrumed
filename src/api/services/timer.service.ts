@@ -16,6 +16,7 @@ export class TimerService {
 
   updateScrumState = this.socket.fromEvent('scrumStateChanged');
   changeActiveGuestTurn = this.socket.fromEvent('nextGuestChanged');
+  shareCurrentScrumState = this.socket.fromEvent('shareCurrentScrumState');
 
   constructor(
     private httpClient: HttpClient,
@@ -45,8 +46,8 @@ export class TimerService {
     this.socket.emit('changeActiveGuestTurn', scrumId);
   }
 
-  sendCurrentTimeToServer(scrumId: string, scrumState: boolean, currentTime: string) {
-    this.socket.emit('changeScrumState', {
+  sendCurrentStateToServer(scrumId: string, scrumState: boolean, currentTime: string) {
+    this.socket.emit('getScrumState', {
       scrumId: scrumId,
       isPaused: scrumState,
       minutes: currentTime.substr(0, 2),
@@ -56,6 +57,5 @@ export class TimerService {
 
   getCurrentScrumState(scrumId: string) {
     this.socket.emit('getUpdatedScrumState', scrumId);
-    return this.socket.fromEvent('updatedScrumState');
   }
 }
