@@ -46,11 +46,7 @@ export class GuestTimerComponent implements OnInit {
   }
 
   changeScrumState() {
-    this.timerService.getCurrentTurnTime();
-  }
-
-  sendCurrentTimeToServer(currentTime: string) {
-    this.timerService.sendCurrentTimeToServer(!this.isRunning, currentTime);
+    this.timerService.getCurrentTurnTime(this.currentScrum.id);
   }
 
   nextTurn() {
@@ -62,14 +58,17 @@ export class GuestTimerComponent implements OnInit {
       --this.activeUserRemainingSeconds;
       if (this.activeUserRemainingSeconds === 0) {
         this.nextTurn();
-        this.activeUserRemainingSeconds = this.currentScrum.minutesPerGuest * 60;
       }
     }
   }
 
   ngOnInit() {
     /* Sockets Events */
-    this.timerService.changeScrumStateSubject.subscribe(scrumData => {
+    this.timerService.changeActiveGuestTurn.subscribe(data => {
+      this.isRunning = data['isRunning'];
+      this.activeUserRemainingSeconds = this.currentScrum.minutesPerGuest * 60;
+    })
+    this.timerService.updateScrumState.subscribe(scrumData => {
       this.wasStarted = true;
       this.isRunning = scrumData['isPaused'];
     });

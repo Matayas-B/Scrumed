@@ -5,7 +5,8 @@ export class Scrum {
   meetingTitle: string;
   totalTime: Date;
   minutesPerGuest: number;
-  isCountdown: boolean
+  isCountdown: boolean;
+  started: boolean;
   guests: Guest[];
 
   constructor(meetTitle: string, minPerGuest: number, countDown: boolean, guestList: Guest[]) {

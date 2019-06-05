@@ -62,13 +62,17 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
     /* Sockets Events */
-    this.timerService.getCurrentTimeSubject.subscribe(() => this.currentTime.emit(this.minutes + this.seconds));
-    this.timerService.changeScrumStateSubject.subscribe(scrumData => {
+    this.timerService.getCurrentTimeSubject.subscribe((scrumId) => this.timerService.sendCurrentTimeToServer(scrumId, !this.isRunning, this.minutes + this.seconds));
+    this.timerService.changeActiveGuestTurn.subscribe(data => {
+      this.isRunning = data['isRunning'];
+      this.rebootTimer();
+    })
+    this.timerService.updateScrumState.subscribe(scrumData => {
       this.isRunning = scrumData['isPaused'];
       this.minutes = scrumData['minutes'];
       this.seconds = scrumData['seconds'];
     });
-    
+
     if (this.isCountdown) {
       this.rebootTimer();
       secondsCounter.subscribe(() => this.decreaseTimer());

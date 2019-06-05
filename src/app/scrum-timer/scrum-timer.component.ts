@@ -25,17 +25,22 @@ export class ScrumTimerComponent implements OnInit {
   ) { }
 
   enableNextUser() {
-    var currentTurn = this.activeGuest.participantTurn + 1;
-    this.activeGuest = this.guestList.find(g => g.participantTurn === currentTurn);
-    if (this.activeGuest === undefined)
-      this.router.navigate(['/scrum-finished']);
+    this.timerService.moveToNextTurn(this.currentScrum.id);
   }
 
   ngOnInit() {
-    this.timerService.changeScrumStateSubject.subscribe(scrumData => {
+    /* Sockets Events */
+    this.timerService.changeActiveGuestTurn.subscribe(data => {
+      if (data['isFinished'])
+        this.router.navigate(['/scrum-finished']);
+
+      this.activeGuest = data['nextGuest'];
+      this.isRunning = data['isRunning'];
+    })
+    this.timerService.updateScrumState.subscribe(scrumData => {
       this.isRunning = scrumData['isPaused'];
     });
-    
+
     this.route.paramMap.subscribe(params => {
       var scrumId = params.get('id');
       this.timerService.getScrum(scrumId).subscribe(scrum => {
@@ -43,6 +48,9 @@ export class ScrumTimerComponent implements OnInit {
         this.guestList = this.currentScrum.guests;
         this.minutesPerGuest = this.currentScrum.minutesPerGuest;
         this.activeGuest = this.guestList.find(g => g.isActiveParticipant);
+
+        if (this.currentScrum.started)
+          this.timerService.getCurrentScrumState(scrumId).subscribe(data => console.log(data));
       })
     })
   }

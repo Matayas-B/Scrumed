@@ -13,17 +13,14 @@ export class TimerService {
   baseUrl = environment.serviceBaseUrl;
 
   getCurrentTimeSubject = new Subject<string>();
-  changeScrumStateSubject = new Subject<object>();
+
+  updateScrumState = this.socket.fromEvent('scrumStateChanged');
+  changeActiveGuestTurn = this.socket.fromEvent('nextGuestChanged');
 
   constructor(
     private httpClient: HttpClient,
     private socket: Socket
-  ) { 
-    /* Sockets Listener Methods */
-    this.socket.fromEvent('scrumStateChanged').subscribe(data => {
-      this.pauseOrResumeScrum(data);
-    })
-  }
+  ) { }
 
   getScrum(scrumId: string): Observable<Scrum> {
     const url = `${this.baseUrl}scrum/get-scrum?id=${scrumId}`;
@@ -39,20 +36,26 @@ export class TimerService {
     return this.httpClient.post<number>(url, scrum, { headers });
   }
 
-  getCurrentTurnTime() {
-    this.getCurrentTimeSubject.next();
-  }
-
-  pauseOrResumeScrum(scrumData: object, wasStarted: boolean = false) {
-    this.changeScrumStateSubject.next(scrumData);
+  getCurrentTurnTime(scrumId: string) {
+    this.getCurrentTimeSubject.next(scrumId);
   }
 
   /* Sockets Emit Methods */
-  sendCurrentTimeToServer(scrumState: boolean, currentTime: string) {
+  moveToNextTurn(scrumId: string) {
+    this.socket.emit('changeActiveGuestTurn', scrumId);
+  }
+
+  sendCurrentTimeToServer(scrumId: string, scrumState: boolean, currentTime: string) {
     this.socket.emit('changeScrumState', {
+      scrumId: scrumId,
       isPaused: scrumState,
       minutes: currentTime.substr(0, 2),
       seconds: currentTime.substr(2, 2)
     });
+  }
+
+  getCurrentScrumState(scrumId: string) {
+    this.socket.emit('getUpdatedScrumState', scrumId);
+    return this.socket.fromEvent('updatedScrumState');
   }
 }
