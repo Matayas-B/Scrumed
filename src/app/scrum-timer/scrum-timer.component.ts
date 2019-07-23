@@ -49,6 +49,7 @@ export class ScrumTimerComponent implements OnInit {
         this.minutesPerGuest = this.currentScrum.minutesPerGuest;
         this.activeGuest = this.guestList.find(g => g.isActiveParticipant);
 
+        this.timerService.joinScrumRoom(scrumId);
         if (this.currentScrum.started)
           this.timerService.getCurrentScrumState(scrumId);
       })

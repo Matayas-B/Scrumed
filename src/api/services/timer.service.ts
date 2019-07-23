@@ -42,6 +42,10 @@ export class TimerService {
   }
 
   /* Sockets Emit Methods */
+  joinScrumRoom(scrumId: string) {
+    this.socket.emit('joinScrumIdRoom', scrumId);
+  }
+
   moveToNextTurn(scrumId: string) {
     this.socket.emit('changeActiveGuestTurn', scrumId);
   }
