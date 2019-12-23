@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
-      <h1 class="welcome-title">
-        ¡ Welcome to Scrummed !
+      <h1 class="text-center title welcome">
+        ! Welcome to Scrummed !
       </h1>
+      <h5 class="text-center title welcome-mobile">Scrummed</h5>
     </div>
     <form class="col-lg-12 col-md-12 col-sm-12" [formGroup]="scrumMeetingForm" (ngSubmit)="createScrumMeeting()">
       <aw-wizard>
@@ -27,20 +28,20 @@
           </div>
         </aw-wizard-step>
         <!-- Set minutes -->
-        <aw-wizard-step stepTitle="Set minutes per guest">
+        <aw-wizard-step stepTitle="Set minutes per guest" class="set-minutes">
           <div class="form-group text-center">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 text-right cool-span mt-5 pt-3">
+              <div class="col-lg-4 col-md-6 col-sm-6 text-right cool-span mt-5 pt-3">
                 <span>Minutes per guest:</span>
               </div>
-              <div class="col-lg-1 col-md-1 col-sm-12 mt-5">
+              <div class="col-lg-4 col-md-1 col-sm-12 mt-5">
                 <label for="minutes" class="cool-input">
                   <input class="text-center" type="number" min="0" id="minutes" autocomplete="off" placeholder="&nbsp;"
                     formControlName="minutesPerGuest"
                     [ngClass]="{ 'is-invalid': submitted && form.minutesPerGuest.errors }" />
                 </label>
               </div>
-              <div class="col-lg-3 col-md-3 col-sm-12 mt-5 pt-3">
+              <div class="col-lg-4 col-md-3 col-sm-12 mt-5 pt-3 text-left">
                 <input class="styled-checkbox" id="countdown" type="checkbox" formControlName="isCountdown">
                 <label for="countdown" class="cool-span">Is countdown?</label>
               </div>
@@ -59,32 +60,32 @@
         <aw-wizard-step stepTitle="Add participants">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 cool-span">
-              <h4 class="text-center mt-4">
+              <h4 class="text-center mt-4 participants-text">
                 Please, include as many participants as you want to your:
-                <span
-                  style="color: #f07c22;">{{form.meetingTitle.value ? form.meetingTitle.value : '???????????'}}</span>
               </h4>
+              <h4 class="text-center scrum-title">{{form.meetingTitle.value ? form.meetingTitle.value : '- write a title -'}}</h4>
             </div>
           </div>
           <form [formGroup]="nextParticipant" (ngSubmit)="addParticipant()">
             <div class="row">
-              <div class="col-lg-7 col-md-7 col-sm-12 text-right mt-4">
+              <div class="col-lg-7 col-md-7 col-sm-12 text-right mt-4 participants-input">
                 <div class="form-group">
                   <label for="name" class="cool-input">
-                    <input type="text" id="name" placeholder="&nbsp;" autocomplete="off" formControlName="participantName"
+                    <input type="text" id="name" placeholder="&nbsp;" autocomplete="off"
+                      formControlName="participantName"
                       [ngClass]="{ 'is-invalid': pSubmitted && pForm.participantName.errors }" />
                     <span class="label">Participant name</span>
                   </label>
                 </div>
               </div>
-              <div class="col-lg-5 col-md-5 col-sm-12 mt-4">
-                <button class="btn-add-guest">Add him!</button>
+              <div class="col-lg-5 col-md-5 col-sm-12 mt-4 btn-add-participants">
+                <button class="btn btn-success">Add him!</button>
               </div>
             </div>
           </form>
           <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-center mt-5 participants-title">
-              <h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center mt-5 participants-list">
+              <h4 *ngIf="form.participants.value.length > 0">
                 Scrum Participants
               </h4>
             </div>
@@ -118,7 +119,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-center mt-5">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center mt-5 btn-create-scrum">
               <button class="btn btn-warning">Create Scrum!</button>
             </div>
           </div>

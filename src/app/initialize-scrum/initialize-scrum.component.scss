@@ -1,233 +1,274 @@
-.welcome-title {
-    text-align: center;
-    font-family: 'Aclonica';
-    margin: 5%;
-    font-size: 60px;
-    color: #f07c22;
-  }
+.title {
+  font-family: "Aclonica";
+  color: #f07c22;
+  margin: 5%;
+}
 
-  * {
-    box-sizing: border-box;
-  }
-  .cool-span {
-    font-size: 16px;
-    color: #9098a9;
-    font-weight: 500;
+.welcome {
+  font-size: 60px;
+}
 
-    h4 {
-      font-family: 'Aclonica';
-    }
+.welcome-mobile {
+  font-size: 45px;
+  display: none;
+}
+
+.set-minutes input {
+  width: 20% !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+.cool-span {
+  font-size: 16px;
+  color: #9098a9;
+  font-weight: 500;
+
+  h4 {
+    font-family: "Aclonica";
   }
-  .cool-input {
+}
+.cool-input {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+.cool-input .label {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-size: 16px;
+  color: #9098a9;
+  font-weight: 500;
+  transform-origin: 0 0;
+  transition: all 0.2s ease;
+}
+.cool-input .border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: #07f;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: all 0.15s ease;
+}
+.cool-input input {
+  -webkit-appearance: none;
+  width: 100%;
+  border: 0;
+  font-family: inherit;
+  padding: 12px 0;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid #c8ccd4;
+  background: none;
+  border-radius: 0;
+  color: #223254;
+  transition: all 0.15s ease;
+}
+.cool-input input:not(:placeholder-shown) + span {
+  transform: translateY(-26px) scale(0.75);
+}
+.cool-input input:focus {
+  background: none;
+  outline: none;
+}
+.cool-input input:focus + span {
+  transform: translateY(-26px) scale(0.75);
+}
+.cool-input input:focus + span + .border {
+  transform: scaleX(1);
+}
+
+.invalid-feedback {
+  font-size: 16px;
+  font-weight: 500;
+}
+.btn-warning {
+  background-color: #f07c22 !important;
+  font-size: 30px;
+  font-family: aclonica;
+}
+.btn-success {
+  font-size: 15px;
+  font-family: aclonica;
+}
+.btn-danger {
+  font-size: 15px;
+  font-family: aclonica;
+}
+.btn-add-guest {
+  background: #28a745;
+  background-image: -webkit-linear-gradient(top, #28a745);
+  background-image: -moz-linear-gradient(top, #28a745);
+  background-image: -ms-linear-gradient(top, #28a745);
+  background-image: -o-linear-gradient(top, #28a745);
+  background-image: linear-gradient(to bottom, #28a745);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+.btn-add-guest:hover {
+  background: #218838;
+  background-image: -webkit-linear-gradient(top, #218838);
+  background-image: -moz-linear-gradient(top, #218838);
+  background-image: -ms-linear-gradient(top, #218838);
+  background-image: -o-linear-gradient(top, #218838);
+  background-image: linear-gradient(to bottom, #218838);
+  text-decoration: none;
+}
+.btn-add-guest:focus {
+  outline: 0;
+}
+
+.guest-list {
+  margin-top: 2%;
+  font-family: "Aclonica";
+  color: coral;
+  text-transform: capitalize;
+}
+
+.scrum-title {
+  color: #f07c22;
+}
+
+.participants {
+  font-weight: 500;
+}
+.participants-scroll {
+  overflow-y: auto;
+  height: 310px;
+}
+.participants-list {
+  font-family: aclonica;
+}
+
+.x {
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  border: 2px solid #eef5df;
+  background-color: #f07c22;
+  border-radius: 50%;
+}
+.x::before,
+.x::after {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  width: 13px;
+  height: 3px;
+  content: "";
+  background-color: #eef5df;
+  display: none;
+}
+.x::before {
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.x::after {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.x:hover {
+  cursor: pointer;
+}
+.x:hover::before,
+.x:hover::after {
+  display: block;
+}
+
+.styled-checkbox {
+  visibility: hidden; // Hide the original checkbox
+
+  & + label {
     position: relative;
-    width: 100%;
-    max-width: 280px;
-  }
-  .cool-input .label {
-    position: absolute;
-    top: 16px;
-    left: 0;
-    font-size: 16px;
-    color: #9098a9;
-    font-weight: 500;
-    transform-origin: 0 0;
-    transition: all 0.2s ease;
-  }
-  .cool-input .border {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background: #07f;
-    transform: scaleX(0);
-    transform-origin: 0 0;
-    transition: all 0.15s ease;
-  }
-  .cool-input input {
-    -webkit-appearance: none;
-    width: 100%;
-    border: 0;
-    font-family: inherit;
-    padding: 12px 0;
-    height: 48px;
-    font-size: 16px;
-    font-weight: 500;
-    border-bottom: 2px solid #c8ccd4;
-    background: none;
-    border-radius: 0;
-    color: #223254;
-    transition: all 0.15s ease;
-  }
-  .cool-input input:not(:placeholder-shown) + span {
-    transform: translateY(-26px) scale(0.75);
-  }
-  .cool-input input:focus {
-    background: none;
-    outline: none;
-  }
-  .cool-input input:focus + span {
-    transform: translateY(-26px) scale(0.75);
-  }
-  .cool-input input:focus + span + .border {
-    transform: scaleX(1);
+    cursor: pointer;
+    padding: 0;
   }
 
-  .invalid-feedback {
-    font-size: 16px;
-    font-weight: 500;
-  }
-  .btn-warning {
-    background-color: #f07c22 !important;
-    font-size: 30px;
-    font-family: aclonica;
-  }
-  .btn-success {
-    font-size: 15px;
-    font-family: aclonica;
-  }
-  .btn-danger {
-    font-size: 15px;
-    font-family: aclonica;
-  }
-  .btn-add-guest {
-    background: #28a745;
-    background-image: -webkit-linear-gradient(top, #28a745);
-    background-image: -moz-linear-gradient(top, #28a745);
-    background-image: -ms-linear-gradient(top, #28a745);
-    background-image: -o-linear-gradient(top, #28a745);
-    background-image: linear-gradient(to bottom, #28a745);
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
-    font-family: Arial;
-    color: #ffffff;
-    font-size: 15px;
-    padding: 10px 20px 10px 20px;
-    text-decoration: none;
-  }
-  .btn-add-guest:hover {
-    background: #218838;
-    background-image: -webkit-linear-gradient(top, #218838);
-    background-image: -moz-linear-gradient(top, #218838);
-    background-image: -ms-linear-gradient(top, #218838);
-    background-image: -o-linear-gradient(top, #218838);
-    background-image: linear-gradient(to bottom, #218838);
-    text-decoration: none;
-  }
-  .btn-add-guest:focus {
-    outline: 0;
-  }
-
-  .guest-list {
-    margin-top: 2%;
-    font-family: 'Aclonica';
-    color: coral;
-    text-transform: capitalize;
-  }
-
-  .participants {
-    font-weight: 500;
-  }
-  .participants-scroll {
-    overflow-y: auto;
-    height: 310px;
-  }
-  .participants-title {
-    font-family: aclonica;
-  }
-
-  .x {
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    border: 2px solid #eef5df;
-    background-color: #f07c22;
-    border-radius: 50%;
-    }
-  .x::before, .x::after {
-    position: absolute;
-    top: 10px;
-    left: 5px;
-    width: 13px;
-    height: 3px;
+  // Box.
+  & + label:before {
     content: "";
-    background-color: #eef5df;
-    display: none;
-    }
-  .x::before {
-    -ms-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    }
-  .x::after {
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    }
-  .x:hover { cursor: pointer; }
-  .x:hover::before, .x:hover::after { display: block; }
-
-  .styled-checkbox {
-    visibility: hidden; // Hide the original checkbox
-
-    & + label {
-      position: relative;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    // Box.
-    & + label:before {
-      content: '';
-      margin-right: 10px;
-      display: inline-block;
-      vertical-align: text-top;
-      width: 20px;
-      height: 20px;
-      background: white;
-      border: solid;
-      border-color: #f35429;
-    }
-
-    // Box focus
-    &:focus + label:before {
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
-    }
-
-    // Box checked
-    &:checked + label:before {
-      background: #f35429;
-    }
-
-    // Disabled state label.
-    &:disabled + label {
-      color: #b8b8b8;
-      cursor: auto;
-    }
-
-    // Disabled box.
-    &:disabled + label:before {
-      box-shadow: none;
-      background: #ddd;
-    }
-
-    // Checkmark. Could be replaced with an image
-    &:checked + label:after {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 9px;
-      background: white;
-      width: 2px;
-      height: 2px;
-      box-shadow:
-        2px 0 0 white,
-        4px 0 0 white,
-        4px -2px 0 white,
-        4px -4px 0 white,
-        4px -6px 0 white,
-        4px -8px 0 white;
-      transform: rotate(45deg);
-    }
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: solid;
+    border-color: #f35429;
   }
+
+  // Box focus
+  &:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Box checked
+  &:checked + label:before {
+    background: #f35429;
+  }
+
+  // Disabled state label.
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + label:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}
+
+// Media Queries
+@media (max-width: 550px) {
+  .welcome,
+  .participants-text {
+    display: none;
+  }
+
+  .welcome-mobile {
+    display: block;
+  }
+
+  .set-minutes div,
+  .btn-add-participants,
+  .participants-input {
+    text-align: center !important;
+  }
+
+  .scrum-title {
+    margin-top: 10%;
+  }
+
+  .btn-create-scrum {
+    margin: 0px !important;
+  }
+}
