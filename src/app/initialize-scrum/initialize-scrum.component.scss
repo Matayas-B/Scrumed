@@ -67,7 +67,7 @@
   border-bottom: 2px solid #c8ccd4;
   background: none;
   border-radius: 0;
-  color: #223254;
+  color: #9098a9;
   transition: all 0.15s ease;
 }
 .cool-input input:not(:placeholder-shown) + span {
@@ -143,13 +143,19 @@
 
 .participants {
   font-weight: 500;
+
+  table {
+    color: #9098a9;
+  }
 }
+
 .participants-scroll {
   overflow-y: auto;
   height: 310px;
 }
 .participants-list {
   font-family: aclonica;
+  color: #9098a9;
 }
 
 .x {
