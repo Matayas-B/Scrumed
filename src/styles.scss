@@ -1,16 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Aclonica);
 
-body,
-html {
-  height: 100%;
-}
-
-.background {
-  background-image: url("https://i.pinimg.com/originals/31/d6/85/31d685fa99fb1a54f326c35a5ac77747.jpg");
-  height: 100%;
-  background-position: center;
+body {
+  background-image: url("assets/black_background.jpg");
+  background-position: center left;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .btn {
