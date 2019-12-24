@@ -28,6 +28,18 @@
   display: none;
 }
 
+.btn-home a {
+  text-decoration: none;
+}
+
+.btn-home-mobile {
+  display: none;
+}
+
+.btn-home-mobile-left {
+  display: none;
+}
+
 // Media Queries
 @media (max-width: 550px) {
   .welcome {
@@ -44,5 +56,21 @@
 
   .welcome-p-mobile {
     display: block;
+  }
+
+  .btn-home {
+    display: none;
+  }
+
+  .btn-home-mobile {
+    display: block;
+    float: right;
+    background-color: #28A702;
+  }
+  
+  .btn-home-mobile-left {
+    display: block;
+    float: left;
+    background-color: #28A702 !important;
   }
 }

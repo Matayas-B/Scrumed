@@ -17,10 +17,20 @@
   </div>
   <div class="row">
     <div class="col-6 text-right mt-5">
-      <button type="button" class="btn btn-outline-success btn-lg">Create a Scrum</button>
+      <button type="button" class="btn btn-outline-success btn-lg btn-home" routerLink="/scrum-initialize">
+        <span>Create a Scrum</span>
+      </button>
+      <button mat-fab class="btn-home-mobile" routerLink="/scrum-initialize">
+        <mat-icon>control_point</mat-icon>
+      </button>
     </div>
     <div class="col-6 text-left mt-5">
-      <button type="button" class="btn btn-outline-success">Join a Scrum</button>
+      <button type="button" class="btn btn-outline-success btn-home" (click)="openDialog()">
+        <span>Join a Scrum</span>
+      </button>
+      <button mat-fab class="btn-home-mobile-left">
+        <mat-icon>insert_link</mat-icon>
+      </button>
     </div>
   </div>
 </div>

@@ -16,7 +16,13 @@ import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.co
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
+import {JoinScrumModalDialog} from './home/join-scrum-modal/join-scrum-modal'
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatRippleModule} from '@angular/material';
 
 const config: SocketIoConfig = { url: environment.serviceBaseUrl, options: {} };
 
@@ -29,13 +35,22 @@ const config: SocketIoConfig = { url: environment.serviceBaseUrl, options: {} };
     ScrumFinishedComponent,
     TimerComponent,
     InitializeScrumComponent,
-    HomeComponent
+    HomeComponent,
+    JoinScrumModalDialog
+  ],
+  entryComponents: [
+    JoinScrumModalDialog
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
     ArchwizardModule,
     ToastrModule.forRoot(),
     FormsModule,
