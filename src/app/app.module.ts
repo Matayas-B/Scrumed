@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { HomeComponent } from './home/home.component';
+import {MatButtonModule} from '@angular/material/button';
 
 const config: SocketIoConfig = { url: environment.serviceBaseUrl, options: {} };
 
@@ -26,12 +28,14 @@ const config: SocketIoConfig = { url: environment.serviceBaseUrl, options: {} };
     ScrumTimerComponent,
     ScrumFinishedComponent,
     TimerComponent,
-    InitializeScrumComponent
+    InitializeScrumComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     ArchwizardModule,
     ToastrModule.forRoot(),
     FormsModule,

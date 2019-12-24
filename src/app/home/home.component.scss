@@ -1,0 +1,48 @@
+.title {
+  font-family: "Aclonica";
+  color: #f07c22;
+  margin: 5%;
+}
+
+.welcome {
+  font-size: 60px;
+}
+
+.welcome-p {
+  color: #ffffea;
+  font-size: 40px;
+  font-weight: 600;
+  text-shadow: 7px 7px 10px #1ad1ff;
+}
+
+.welcome-mobile {
+  font-size: 45px;
+  display: none;
+}
+
+.welcome-p-mobile {
+  color: #ffffea;
+  font-size: 30px;
+  font-weight: 600;
+  text-shadow: 7px 7px 10px #1ad1ff;
+  display: none;
+}
+
+// Media Queries
+@media (max-width: 550px) {
+  .welcome {
+    display: none;
+  }
+
+  .welcome-mobile {
+    display: block;
+  }
+
+  .welcome-p {
+    display: none;
+  }
+
+  .welcome-p-mobile {
+    display: block;
+  }
+}

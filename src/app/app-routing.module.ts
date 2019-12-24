@@ -4,8 +4,19 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ScrumTimerComponent } from './scrum-timer/scrum-timer.component';
 import { ScrumFinishedComponent } from './scrum-finished/scrum-finished.component';
 import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: {title: 'Welcome to Scrummed!'}
+  },
   {
     path: 'scrum-initialize',
     component: InitializeScrumComponent,
@@ -20,11 +31,6 @@ const routes: Routes = [
     path: 'scrum-finished',
     component: ScrumFinishedComponent,
     data: { title: 'Scrum Finished!' }
-  },
-  {
-    path: '',
-    redirectTo: '/scrum-initialize',
-    pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }
 ];
