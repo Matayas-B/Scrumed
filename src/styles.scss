@@ -6,6 +6,23 @@ body {
   background-repeat: no-repeat;
 }
 
+.title {
+  font-family: "Aclonica";
+  color: #f07c22;
+  margin: 5%;
+}
+
+.welcome {
+  font-size: 60px;
+}
+
+.welcome-p {
+  color: #ffffea;
+  font-size: 40px;
+  font-weight: 600;
+  text-shadow: 7px 7px 10px #1ad1ff;
+}
+
 .btn {
   color: white;
 }
@@ -22,22 +39,6 @@ body {
 .btn-danger {
   font-size: 15px;
   font-family: aclonica;
-}
-
-.general-title {
-  height: 10em;
-  position: relative;
-}
-
-.general-title p {
-  margin: 0;
-  position: absolute;
-  font-size: 70px;
-  color: crimson;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
 }
 
 html, body { height: 100%; }
