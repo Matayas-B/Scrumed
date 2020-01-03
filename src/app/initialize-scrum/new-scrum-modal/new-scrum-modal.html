@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Scrum was created !</h1>
+<div mat-dialog-content>
+  <p>Your new scrum GUID is:</p>
+  <mat-form-field style="width: 100%;">
+    <input matInput [ngModel]="data.scrumId" disabled>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="join-button">
+  <button mat-button [mat-dialog-close]="data.scrumId" cdkFocusInitial>Let's join the Scrum!</button>
+</div>
+<div class="clipboard-button">
+  <span>
+    <mat-icon (click)="copyToClipboard(data.scrumId)">content_copy</mat-icon>
+  </span>
+</div>

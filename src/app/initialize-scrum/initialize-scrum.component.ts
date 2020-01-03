@@ -4,6 +4,8 @@ import { TimerService } from 'src/api/services/timer.service';
 import { Scrum } from 'src/api/models/scrum';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material';
+import { NewScrumModalDialog } from './new-scrum-modal/new-scrum-modal';
 
 @Component({
   selector: 'app-initialize-scrum',
@@ -25,7 +27,8 @@ export class InitializeScrumComponent implements OnInit {
     private formBuilder: FormBuilder,
     private timerService: TimerService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) { }
 
   // Getter to access form controls for validation
@@ -90,7 +93,15 @@ export class InitializeScrumComponent implements OnInit {
       this.scrumMeetingForm.get('participants').value
     );
     this.timerService.createScrum(newScrum).subscribe(id => {
-      this.router.navigate(['/scrum-timer/' + id])
+      const dialogRef = this.dialog.open(NewScrumModalDialog, { 
+        width: '350px',
+        data: { scrumId: id }
+      });
+  
+      dialogRef.afterClosed().subscribe(scrumId => {
+        if (scrumId != undefined)
+          this.router.navigate(['/scrum-timer/' + id])
+      });
     })
   }
 

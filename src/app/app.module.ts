@@ -16,7 +16,8 @@ import { InitializeScrumComponent } from './initialize-scrum/initialize-scrum.co
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
-import {JoinScrumModalDialog} from './home/join-scrum-modal/join-scrum-modal'
+import {JoinScrumModalDialog} from './home/join-scrum-modal/join-scrum-modal';
+import {NewScrumModalDialog} from './initialize-scrum/new-scrum-modal/new-scrum-modal';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -36,10 +37,12 @@ const config: SocketIoConfig = { url: environment.serviceBaseUrl, options: {} };
     TimerComponent,
     InitializeScrumComponent,
     HomeComponent,
-    JoinScrumModalDialog
+    JoinScrumModalDialog,
+    NewScrumModalDialog
   ],
   entryComponents: [
-    JoinScrumModalDialog
+    JoinScrumModalDialog,
+    NewScrumModalDialog
   ],
   imports: [
     BrowserModule,
