@@ -32,6 +32,11 @@ const routes: Routes = [
     component: ScrumFinishedComponent,
     data: { title: 'Scrum Finished!' }
   },
+  {
+    path: 'not-found',
+    component: PageNotFoundComponent,
+    data: { title: 'Not Found!' }
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 

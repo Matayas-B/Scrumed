@@ -3,6 +3,7 @@ import { Guest } from 'src/api/models/guest';
 import { TimerService } from 'src/api/services/timer.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Scrum } from 'src/api/models/scrum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-scrum-timer',
@@ -21,11 +22,18 @@ export class ScrumTimerComponent implements OnInit {
   constructor(
     private timerService: TimerService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) { }
 
   enableNextUser() {
     this.timerService.moveToNextTurn(this.currentScrum.id);
+  }
+
+  toastError(errorMessage: string, errorTitle: string, position: string) {
+    this.toastr.warning(errorMessage, errorTitle, {
+      positionClass: position
+    });
   }
 
   ngOnInit() {
@@ -43,16 +51,21 @@ export class ScrumTimerComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       var scrumId = params.get('id');
-      this.timerService.getScrum(scrumId).subscribe(scrum => {
-        this.currentScrum = scrum;
-        this.guestList = this.currentScrum.guests;
-        this.minutesPerGuest = this.currentScrum.minutesPerGuest;
-        this.activeGuest = this.guestList.find(g => g.isActiveParticipant);
+      this.timerService.getScrum(scrumId).subscribe(
+        scrum => {
+          this.currentScrum = scrum;
+          this.guestList = this.currentScrum.guests;
+          this.minutesPerGuest = this.currentScrum.minutesPerGuest;
+          this.activeGuest = this.guestList.find(g => g.isActiveParticipant);
 
-        this.timerService.joinScrumRoom(scrumId);
-        if (this.currentScrum.started)
-          this.timerService.getCurrentScrumState(scrumId);
-      })
+          this.timerService.joinScrumRoom(scrumId);
+          if (this.currentScrum.started)
+            this.timerService.getCurrentScrumState(scrumId);
+        },
+        error => {
+          this.toastError("Scrum meeting does not exists.", "Not Found", "toast-bottom-center");
+          this.router.navigate(['/not-found']);
+        })
     })
   }
 }
