@@ -93,11 +93,12 @@ export class InitializeScrumComponent implements OnInit {
       this.scrumMeetingForm.get('participants').value
     );
     this.timerService.createScrum(newScrum).subscribe(id => {
-      const dialogRef = this.dialog.open(NewScrumModalDialog, { 
+      const dialogRef = this.dialog.open(NewScrumModalDialog, {
         width: '350px',
+        disableClose: true,
         data: { scrumId: id }
       });
-  
+
       dialogRef.afterClosed().subscribe(scrumId => {
         if (scrumId != undefined)
           this.router.navigate(['/scrum-timer/' + id])
