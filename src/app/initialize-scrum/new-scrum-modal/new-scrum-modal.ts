@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ScrumData } from 'src/app/home/join-scrum-modal/join-scrum-modal';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-new-scrum-modal',
@@ -10,9 +11,17 @@ import { ScrumData } from 'src/app/home/join-scrum-modal/join-scrum-modal';
 export class NewScrumModalDialog {
 
     constructor(
+        private toastr: ToastrService,
         public dialogRef: MatDialogRef<NewScrumModalDialog>,
         @Inject(MAT_DIALOG_DATA) public data: ScrumData
     ) { }
+
+    toastInfo(infoMessage: string, position: string) {
+      this.toastr.info(infoMessage, null, {
+        positionClass: position,
+        timeOut: 1000
+      });
+    }
 
     copyToClipboard(scrumId): void {
         const selBox = document.createElement('textarea');
@@ -26,5 +35,6 @@ export class NewScrumModalDialog {
         selBox.select();
         document.execCommand('copy');
         document.body.removeChild(selBox);
+        this.toastInfo("Scrum GUID copied!", "toast-bottom-center");
     }
 }
